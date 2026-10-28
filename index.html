@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Four Questions for Any Medical AI Tool</title>
+<meta name="description" content="A one-page checklist from the talk 'The Model Is Not the Hard Part' at the 2nd MedAI Summit, 28 Oct 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #11182B;
+    --blue: #2F5597;
+    --sky: #8FAADC;
+    --gold: #FFC000;
+    --panel: #EEF2FA;
+    --line: #C9D6EE;
+    --ink: #1A1F2E;
+    --muted: #3A4358;
+    --soft: #5B6478;
+    --cream: #FFF4D1;
+    --bg: #FFFFFF;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  a { color: var(--blue); }
+  .page { max-width: 760px; margin: 0 auto; padding: 16px 16px 40px; }
+
+  .band { background: var(--navy); color: #fff; border-radius: 14px; padding: 22px 22px 20px; }
+  .band .kicker { color: var(--gold); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .band h1 { font-size: 28px; line-height: 1.15; font-weight: 800; margin-top: 8px; }
+  .band .sub { color: var(--sky); font-size: 14px; margin-top: 8px; }
+
+  .lede { font-size: 16px; color: var(--muted); margin: 16px 2px 0; }
+  .lede b { color: var(--ink); }
+
+  .dl {
+    display: block; text-align: center; text-decoration: none;
+    background: var(--gold); color: var(--navy); font-weight: 800; font-size: 17px;
+    border-radius: 12px; padding: 14px 16px; margin: 16px 0 4px;
+  }
+
+  .q { border: 1.5px solid var(--line); border-radius: 14px; padding: 16px; margin-top: 14px; }
+  .qhead { display: flex; gap: 14px; align-items: flex-start; }
+  .num {
+    flex: none; width: 36px; height: 36px; border-radius: 50%;
+    background: var(--blue); color: #fff; font-weight: 800; font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pillar { color: var(--blue); font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+  .q h2 { font-size: 18px; line-height: 1.3; font-weight: 700; color: var(--navy); margin-top: 2px; }
+  .asks { list-style: none; margin-top: 12px; display: grid; gap: 8px; }
+  .asks li { background: var(--panel); border-radius: 10px; padding: 10px 12px; }
+  .asks li span { display: block; }
+  .asks li em { display: block; font-style: normal; font-size: 13px; font-weight: 600; color: var(--blue); margin-top: 3px; }
+  .case { font-size: 14px; color: var(--soft); margin-top: 10px; }
+  .case b { color: var(--muted); }
+
+  .flags { background: var(--cream); border-radius: 12px; padding: 14px 16px; margin-top: 16px; font-size: 15px; }
+
+  .reading { margin-top: 18px; }
+  .reading h3 { font-size: 13px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
+  .reading ol { margin: 8px 0 0 20px; display: grid; gap: 6px; font-size: 14px; color: var(--muted); }
+  .reading a { word-break: break-word; }
+
+  footer { border-top: 1.5px solid var(--line); margin-top: 18px; padding-top: 12px; font-size: 13px; color: var(--soft); }
+  footer .who { color: var(--ink); font-weight: 600; }
+
+  .print-only { display: none; }
+
+  @media (min-width: 640px) {
+    .page { padding: 32px 24px 56px; }
+    .band { padding: 28px 30px 26px; }
+    .band h1 { font-size: 34px; }
+    .asks { grid-template-columns: 1fr 1fr; }
+  }
+
+  @page { size: A4; margin: 0; }
+  @media print {
+    html, body { width: 210mm; height: 297mm; }
+    body { font-size: 8.2pt; line-height: 1.32; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { max-width: none; width: 210mm; height: 296mm; padding: 8mm 12mm 7mm; display: flex; flex-direction: column; }
+    .screen-only { display: none !important; }
+    .print-only { display: inline; }
+    .band { border-radius: 3mm; padding: 4.2mm 6mm 4mm; }
+    .band .kicker { font-size: 7.5pt; }
+    .band h1 { font-size: 20pt; margin-top: 1.5mm; }
+    .band .sub { font-size: 8.6pt; margin-top: 1.5mm; }
+    .lede { font-size: 8.8pt; margin: 3mm 0 0; }
+    .q { border-width: 0.3mm; border-radius: 3mm; padding: 2.6mm 4mm 2.4mm; margin-top: 2.2mm; break-inside: avoid; }
+    .qhead { gap: 3mm; }
+    .num { width: 7mm; height: 7mm; font-size: 11pt; }
+    .pillar { font-size: 7.2pt; }
+    .q h2 { font-size: 10.2pt; }
+    .asks { grid-template-columns: 1fr 1fr; gap: 2mm; margin-top: 2mm; }
+    .asks li { border-radius: 2mm; padding: 1.6mm 2.6mm; }
+    .asks li em { font-size: 7.6pt; margin-top: .6mm; }
+    .case { font-size: 7.6pt; margin-top: 1.6mm; }
+    .flags { border-radius: 2.5mm; padding: 2.2mm 4mm; margin-top: 2.6mm; font-size: 8pt; }
+    .reading { margin-top: 2.6mm; }
+    .reading h3 { font-size: 7.4pt; }
+    .reading ol { font-size: 7pt; line-height: 1.3; gap: .8mm 6mm; margin: 1.4mm 0 0 4mm; grid-template-columns: 1fr 1fr; }
+    .reading a { color: var(--muted); text-decoration: none; }
+    footer { margin-top: auto; border-top-width: 0.3mm; padding-top: 2.2mm; font-size: 7.6pt; }
+  }
+</style>
+</head>
+<body>
+<main class="page">
+
+  <header class="band">
+    <p class="kicker">The Model Is Not the Hard Part · 2nd MedAI Summit · 28 Oct 2026</p>
+    <h1>Four questions for any medical AI tool</h1>
+    <p class="sub">A one-page checklist for medical and pharmacy students · Ali Ganjizadeh, MD, MBA</p>
+  </header>
+
+  <p class="lede">An AI tool performs like a diagnostic test and lives like a drug, so judge it like both. <b>None of these questions is about the model.</b> All of them draw on clinical training.</p>
+
+  <a class="dl screen-only" href="four-questions-checklist.pdf" download>Download the one-page PDF</a>
+
+  <section class="q">
+    <div class="qhead">
+      <div class="num">1</div>
+      <div>
+        <p class="pillar">Data provenance</p>
+        <h2>Where did the data come from, and do those patients look like mine?</h2>
+      </div>
+    </div>
+    <ul class="asks">
+      <li><span>Where did the data and labels come from? Do those patients, sites and devices look like mine?</span><em>Like a drug’s trial population</em></li>
+      <li><span>How were the “right answers” decided, and was it tested at other hospitals and in subgroups?</span><em>Like a gold standard, then replication</em></li>
+    </ul>
+    <p class="case"><b>From the talk:</b> purple surgical ink on benign moles cut a melanoma AI’s specificity from 84% to 46% (Winkler, <i>JAMA Dermatol</i> 2019).</p>
+  </section>
+
+  <section class="q">
+    <div class="qhead">
+      <div class="num">2</div>
+      <div>
+        <p class="pillar">Label definition</p>
+        <h2>What exactly does it predict, and who acts on it, when?</h2>
+      </div>
+    </div>
+    <ul class="asks">
+      <li><span>Does it predict what matters, or a stand-in such as cost or a billing code?</span><em>Like a surrogate endpoint</em></li>
+      <li><span>Who acts on the output, for which patient, at what moment? Does it arrive before we’d know anyway?</span><em>Like a drug’s indication</em></li>
+    </ul>
+    <p class="case"><b>From the talk:</b> an algorithm that predicted healthcare cost instead of need gave Black patients the same risk score as white patients who were less sick (Obermeyer, <i>Science</i> 2019).</p>
+  </section>
+
+  <section class="q">
+    <div class="qhead">
+      <div class="num">3</div>
+      <div>
+        <p class="pillar">Evaluation</p>
+        <h2>What evidence is there beyond accuracy, at my prevalence?</h2>
+      </div>
+    </div>
+    <ul class="asks">
+      <li><span>What is the positive predictive value (PPV) at <i>my</i> prevalence, and how many false alarms come with each true case?</span><em>Like a screening test’s PPV</em></li>
+      <li><span>How far up the ladder has it climbed: accuracy on past data, silent mode, a supervised pilot, a randomised trial of patient outcomes?</span><em>Like trial phases, preclinical to Phase III</em></li>
+    </ul>
+    <p class="case"><b>From the talk:</b> at 1% prevalence, a tool that is 95% sensitive and 95% specific has a PPV of about 16%. Five of every six alerts are false.</p>
+  </section>
+
+  <section class="q">
+    <div class="qhead">
+      <div class="num">4</div>
+      <div>
+        <p class="pillar">After go-live</p>
+        <h2>Who watches it once it’s in use?</h2>
+      </div>
+    </div>
+    <ul class="asks">
+      <li><span>Is there a label stating its intended use, population, and when <i>not</i> to use it?</span><em>Like a package insert</em></li>
+      <li><span>Who monitors it after go-live, and what happens when the scanner, workflow or patient mix changes?</span><em>Like pharmacovigilance</em></li>
+    </ul>
+    <p class="case"><b>From the talk:</b> Duke’s “Model Facts” label for its sepsis model states who it is for and warns, for example, that it is not for ICU patients (Sendak, <i>npj Digit Med</i> 2020).</p>
+  </section>
+
+  <aside class="flags"><b>Red flags:</b> no clear answer on where the training data came from · only accuracy or AUC reported, with no PPV at your prevalence · never tested at a hospital like yours · nobody named to monitor it after go-live.</aside>
+
+  <section class="reading">
+    <h3>Further reading</h3>
+    <ol>
+      <li>Liu Y et al. How to read articles that use machine learning: Users’ Guides to the Medical Literature. <i>JAMA</i> 2019;322:1806–16. <a href="https://doi.org/10.1001/jama.2019.16489">doi.org/10.1001/jama.2019.16489</a></li>
+      <li>Kelly CJ et al. Key challenges for delivering clinical impact with artificial intelligence. <i>BMC Med</i> 2019;17:195 (open access). <a href="https://doi.org/10.1186/s12916-019-1426-2">doi.org/10.1186/s12916-019-1426-2</a></li>
+      <li>Obermeyer Z et al. Dissecting racial bias in an algorithm used to manage the health of populations. <i>Science</i> 2019;366:447–53. <a href="https://doi.org/10.1126/science.aax2342">doi.org/10.1126/science.aax2342</a></li>
+      <li>Finlayson SG et al. The clinician and dataset shift in artificial intelligence. <i>N Engl J Med</i> 2021;385:283–6. <a href="https://doi.org/10.1056/NEJMc2104626">doi.org/10.1056/NEJMc2104626</a></li>
+      <li>Sendak MP et al. Presenting machine learning model information to clinical end users with model facts labels. <i>npj Digit Med</i> 2020;3:41 (open access). <a href="https://doi.org/10.1038/s41746-020-0253-3">doi.org/10.1038/s41746-020-0253-3</a></li>
+      <li>US FDA. Considerations for the use of artificial intelligence to support regulatory decision-making for drug and biological products (draft guidance, January 2025). <a href="https://www.fda.gov/regulatory-information/search-fda-guidance-documents/considerations-use-artificial-intelligence-support-regulatory-decision-making-drug-and-biological"><span class="screen-only">fda.gov guidance page</span><span class="print-only">fda.gov (search the title)</span></a></li>
+    </ol>
+  </section>
+
+  <footer>
+    <p><span class="who">Ali Ganjizadeh, MD, MBA</span> · X <a href="https://x.com/magnooj">@magnooj</a> · LinkedIn <a href="https://www.linkedin.com/in/magnooj">linkedin.com/in/magnooj</a><span class="print-only"> · magnooj.github.io/medai-summit-2026</span></p>
+    <p>Disclosure: I work at HOPPR, which builds AI for medical imaging; this checklist contains no product content. Educational material, not clinical or regulatory advice.</p>
+  </footer>
+
+</main>
+</body>
+</html>
